@@ -256,9 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4edf202d079e24b9c304a3182d240c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgColor: {r: 0, g: 0, b: 0, a: 0}
-  txtColor: {r: 0, g: 0, b: 0, a: 0}
-  bgMaterial: {fileID: 0}
+  bgColor: {r: 0.050980393, g: 0.07450981, b: 0.07450981, a: 1}
+  txtColor: {r: 0.8941177, g: 0.8117648, b: 0.10980393, a: 1}
+  bgMaterial: {fileID: 2100000, guid: 82df8a29a287e044e894a759715392e7, type: 2}
   levelName: {fileID: 326240385}
   firstFont: {fileID: 11400000, guid: 64148746d09601d43bcf754338553bf2, type: 2}
   secondFont: {fileID: 11400000, guid: b967496afc91dbe45a327fad34857604, type: 2}

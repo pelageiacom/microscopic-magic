@@ -13,48 +13,39 @@ public class LevelIntro : MonoBehaviour
 
     public TMP_FontAsset firstFont;
     public TMP_FontAsset secondFont;
-    
-    private float _timePassed = 0f;
-    private static readonly int Opacity = Shader.PropertyToID("_Opacity");
-    private static readonly int Property = Shader.PropertyToID("Background Color");
 
-    private float _startTime;
-
-    // Anim
-    private float _timeElapsed;
-    private float _lerpDuration = 3;
-    private float _startValue=1.0f;
-    private float _endValue=0.0f;
-    private float _opacityVal;
+    private float timePassed = 0.0f;
+    private float startTime;
+    private float timeElapsed;
+    private float lerpDuration = 3f;
+    private float startValue = 1.0f;
+    private float endValue = 0.0f;
 
     private void Start()
     {
-        _startTime = Time.time;
-        
+        startTime = Time.time;
         levelName.color = txtColor;
-        
-        bgMaterial.SetColor(Property, bgColor);
-        bgMaterial.SetFloat(Opacity, 1.0f);
+        bgMaterial.SetColor("_Background Color", bgColor);
+        bgMaterial.SetFloat("_Opacity", 1.0f);
     }
-    
+
     private void Update()
     {
-        int randomFact = Random.Range(0, 100);
-        float deltaTime = randomFact > 98 ? 0.05f : 0.5f; 
-        
-        _timePassed += Time.deltaTime;
-        if(_timePassed > deltaTime)
+        float deltaTime = Random.Range(0, 100) > 98 ? 0.05f : 0.5f;
+        timePassed += Time.deltaTime;
+
+        if (timePassed > deltaTime)
         {
             levelName.font = levelName.font == firstFont ? secondFont : firstFont;
-            _timePassed = 0f;
+            timePassed = 0f;
         }
 
-        if (Time.time > _startTime + 5f && _timeElapsed < _lerpDuration)
+        if (Time.time > startTime + 5f && timeElapsed < lerpDuration)
         {
-            _opacityVal = Mathf.Lerp(_startValue, _endValue, _timeElapsed / _lerpDuration);
-            _timeElapsed += Time.deltaTime;
-            bgMaterial.SetFloat(Opacity, _opacityVal);
-            levelName.alpha = _opacityVal;
+            float opacityVal = Mathf.Lerp(startValue, endValue, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+            bgMaterial.SetFloat("_Opacity", opacityVal);
+            levelName.alpha = opacityVal;
         }
     }
 }
